@@ -12,13 +12,15 @@ class App {
         /**
          * @type {!Element}
          */
-        var appElem = document.createElement('div');
+        let appElem = document.createElement('div');
 
         appElem.classList.add('app-container');
         appElem.classList.add('app-container-background');
         appElem.id = 'app';
 
         document.body.appendChild(appElem);
+
+        // TODO: create game
     }
 
 }
