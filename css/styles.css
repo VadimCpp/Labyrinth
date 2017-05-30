@@ -6,12 +6,24 @@ html, body {
 }
 
 .app-container {
+    display: flex;
     height: 100%;
+    justify-content: center;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
 .app-container-background {
-    background: yellowgreen;
+    /*background: whitesmoke;*/
+}
+
+
+.game-container {
+    height: 480px;
+    width: 320px;
+}
+
+.game-container-background {
+    border: 1px dotted gray;
 }

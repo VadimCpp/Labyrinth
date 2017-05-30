@@ -1,14 +1,39 @@
+import Game from './game';
+
 /**
  * Class representing an App.
  */
 class App {
 
+    constructor() {
+        /**
+         * @const {!number}
+         */
+        const MIN_FIELD_HEIGHT = 480;
+
+        /**
+         * @type {!number}
+         */
+        let fieldHeight = Math.floor(window.innerHeight / 3) * 3;
+
+        fieldHeight = Math.max(fieldHeight, MIN_FIELD_HEIGHT);
+
+        /**
+         * @type {!number}
+         */
+        let fieldWidth = fieldHeight / 3 * 2;
+
+        /**
+         * @type {!Game}
+         * @protected
+         */
+        this.game = new Game(fieldWidth, fieldHeight);
+    }
+
     /**
-     * Call this method once after object has being instantiated.
-     *
      * @public
      */
-    run() {
+    render() {
         /**
          * @type {!Element}
          */
@@ -20,21 +45,16 @@ class App {
 
         document.body.appendChild(appElem);
 
-        // TODO: create game
+        this.game.render(appElem);
     }
-
 }
 
 
-/**
- * Creating the object does nothing.
- * All the initialization is put into run() method and
- * is called after window has been loaded.
- *
- * @type {!App}
- */
-let app = new App();
-
 window.onload = () => {
-    app.run();
+    /**
+     * @type {!App}
+     */
+    let app = new App();
+
+    app.render();
 };
