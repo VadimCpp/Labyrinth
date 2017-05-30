@@ -9,8 +9,16 @@ class App {
      * @public
      */
     run() {
-        // TODO: implement
-        console.log('run');
+        /**
+         * @type {!Element}
+         */
+        var appElem = document.createElement('div');
+
+        appElem.classList.add('app-container');
+        appElem.classList.add('app-container-background');
+        appElem.id = 'app';
+
+        document.body.appendChild(appElem);
     }
 
 }
