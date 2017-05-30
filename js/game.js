@@ -1,4 +1,4 @@
-import View from './view';
+import StartView from './startView';
 
 /**
  * Class representing game controller.
@@ -59,10 +59,10 @@ export default class Game {
         //
 
         /**
-         * @type {!View}
+         * @type {!StartView}
          * @private
          */
-        this._startScreen = new View(this._gameElem);
+        this._startScreen = new StartView(this._gameElem);
     }
 
     /**

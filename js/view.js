@@ -19,7 +19,8 @@ export default class View {
          * @private
          */
         this._viewElem = document.createElement('div');
-        this._viewElem.classList.add('view-container');
+
+        this.addClassName('view-container');
     }
 
     /**
@@ -34,5 +35,13 @@ export default class View {
      */
     remove() {
         this._parentElement.removeChild(this._viewElem);
+    }
+
+    /**
+     * @param {!string} className
+     * @protected
+     */
+    addClassName(className) {
+        this._viewElem.classList.add(className);
     }
 }
