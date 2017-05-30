@@ -63,6 +63,9 @@ export default class Game {
          * @private
          */
         this._startScreen = new StartView(this._gameElem);
+        this._startScreen.onStartButtonClick = this.onStartButtonClickCallback.bind(this);
+
+        // TODO: handleKeyBoard
     }
 
     /**
@@ -73,5 +76,14 @@ export default class Game {
         this._parentElement.appendChild(this._gameElem);
         this._startScreen.render();
     }
-	
+
+    /**
+     * The callback is fired if user tap start button,
+     * or press OK or SPACE on keyboard.
+     *
+     * @public
+     */
+    onStartButtonClickCallback() {
+        console.log('onStartButtonClickCallback');
+    }
 };

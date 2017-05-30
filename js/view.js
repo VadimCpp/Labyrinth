@@ -44,4 +44,12 @@ export default class View {
     addClassName(className) {
         this._viewElem.classList.add(className);
     }
+
+    /**
+     * @param {!Element} element
+     * @protected
+     */
+    appendChild(element) {
+        this._viewElem.appendChild(element);
+    }
 }
