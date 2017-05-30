@@ -7,54 +7,36 @@ class App {
 
     constructor() {
         /**
-         * @const {!number}
+         * @type {!Element}
+         * @private
          */
-        const MIN_FIELD_HEIGHT = 480;
-
-        /**
-         * @type {!number}
-         */
-        let fieldHeight = Math.floor(window.innerHeight / 3) * 3;
-
-        fieldHeight = Math.max(fieldHeight, MIN_FIELD_HEIGHT);
-
-        /**
-         * @type {!number}
-         */
-        let fieldWidth = fieldHeight / 3 * 2;
-
-        /**
-         * @type {!Game}
-         * @protected
-         */
-        this.game = new Game(fieldWidth, fieldHeight);
+        this._appElem = document.createElement('div');
+        this._appElem.classList.add('app-container');
+        this._appElem.classList.add('app-container-background');
     }
 
     /**
      * @public
      */
     render() {
+
+        document.body.appendChild(this._appElem);
+
         /**
-         * @type {!Element}
+         * @type {!Game}
+         * @protected
          */
-        let appElem = document.createElement('div');
-
-        appElem.classList.add('app-container');
-        appElem.classList.add('app-container-background');
-        appElem.id = 'app';
-
-        document.body.appendChild(appElem);
-
-        this.game.render(appElem);
+        this.game = new Game(this._appElem);
+        this.game.render();
     }
 }
 
 
-window.onload = () => {
-    /**
-     * @type {!App}
-     */
-    let app = new App();
+/**
+ * @type {!App}
+ */
+let app = new App();
 
+window.onload = () => {
     app.render();
 };

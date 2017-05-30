@@ -25,5 +25,13 @@ html, body {
 }
 
 .game-container-background {
+    box-sizing: border-box;
     border: 1px dotted gray;
+}
+
+.view-container {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }

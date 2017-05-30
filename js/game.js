@@ -1,45 +1,77 @@
+import View from './view';
+
 /**
  * Class representing game controller.
  */
 export default class Game {
 
 	/**
-	 * @param {!number} fieldWidth
-	 * @param {!number} fieldHeight
+     * @param {!Element} parentElement
      */
-    constructor(fieldWidth, fieldHeight) {
+    constructor(parentElement) {
+
+        /**
+         * @type {!Element}
+         * @private
+         */
+        this._parentElement = parentElement;
+
+        /**
+         * @const {!number}
+         */
+        const MIN_FIELD_HEIGHT = 480;
 
         /**
          * @type {!number}
-         * @protected
+         * @private
          */
-        this.fieldWidth = fieldWidth;
+        this._fieldHeight = Math.floor(window.innerHeight / 3) * 3;
+        this._fieldHeight = Math.max(this._fieldHeight, MIN_FIELD_HEIGHT);
 
         /**
          * @type {!number}
-         * @protected
+         * @private
          */
-        this.fieldHeight = fieldHeight;
+        this._fieldWidth = this._fieldHeight / 3 * 2;
 
+        /**
+         * @type {!Element}
+         * @private
+         */
+        this._gameElem = document.createElement('div');
+        this._gameElem.classList.add('game-container');
+        this._gameElem.classList.add('game-container-background');
+        this._gameElem.style.width = this._fieldWidth + 'px';
+        this._gameElem.style.height = this._fieldHeight + 'px';
+
+        //
+        // TODO:
+        //
+        // Models:
+        //  - player;
+        //  - labyrinth.
+        //
+        // Views:
+        //  - start screen;
+        //  - game screen;
+        //  - finish level screen;
+        //  - final screen;
+        //
+
+        /**
+         * @type {!View}
+         * @private
+         */
+        this._startScreen = new View(this._gameElem);
     }
 
     /**
-     * @param {!Element} element
+     * Game is rendered only once at the beginning.
      * @public
      */
-    render(element) {
-        /**
-         * @type {!Element}
-         */
-        let gameElem = document.createElement('div');
-
-        gameElem.classList.add('game-container');
-        gameElem.classList.add('game-container-background');
-        gameElem.id = 'game';
-        gameElem.style.width = this.fieldWidth + 'px';
-        gameElem.style.height = this.fieldHeight + 'px';
-
-        element.appendChild(gameElem);
+    render() {
+        this._parentElement.appendChild(this._gameElem);
+        this._startScreen.render();
     }
 	
 };
