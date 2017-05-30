@@ -3,7 +3,7 @@ import View from './view';
 /**
  * Class representing a starting screen of the game.
  */
-export default class StartView extends View{
+export default class StartView extends View {
 
     /**
      * @param {!Element} parentElement
@@ -21,6 +21,7 @@ export default class StartView extends View{
         this._createContent();
     }
 
+
     /**
      * @private
      */
@@ -37,13 +38,15 @@ export default class StartView extends View{
 
         /**
          * @type {!Element}
+		 * @private
          */
-        let startButtonElem = this._createStartButton();
+        this._startButtonElem = this._createStartButton();
 
         this.appendChild(titleElem);
         this.appendChild(descriptionElem);
-        this.appendChild(startButtonElem);
+        this.appendChild(this._startButtonElem);
     }
+
 
     /**
      * @return {!Element}
@@ -56,7 +59,7 @@ export default class StartView extends View{
         let titleElem = document.createElement('h1');
 
         titleElem.classList.add('start-view-container__title');
-        titleElem.innerHTML = 'Labyrinth';
+        titleElem.innerHTML = 'Лабиринт';
 
         return titleElem;
     }
@@ -70,10 +73,10 @@ export default class StartView extends View{
         /**
          * @type {!Element}
          */
-        let descriptionElem = document.createElement('p');
+        let descriptionElem = document.createElement('h2');
 
         descriptionElem.classList.add('start-view-container__description');
-        descriptionElem.innerHTML = 'Help Lenni to find an exit';
+        descriptionElem.innerHTML = 'Ленни свободен от забот и ищет выход из лабиринта';
 
         return descriptionElem;
     }
@@ -90,11 +93,12 @@ export default class StartView extends View{
         let startButtonElem = document.createElement('div');
 
         startButtonElem.classList.add('start-view-container__start-button');
-        startButtonElem.innerHTML = 'Poehali!';
+        startButtonElem.innerHTML = 'Поехали!';
         startButtonElem.onclick = this.onStartButtonClickCallback.bind(this);
 
         return startButtonElem;
     }
+
 
     /**
      * @public
@@ -104,4 +108,28 @@ export default class StartView extends View{
             this.onStartButtonClick();
         }
     }
+	
+	
+    /**
+     * @public
+     */
+	showPressButtonEffect() {
+		
+		/**
+		 * @const {!number}
+		 */
+		const DELAY = 200;
+		
+		this._startButtonElem.classList.add('start-view-container__start-button_focus');
+		setTimeout(this.hidePressButtonEffectCallback.bind(this), DELAY);
+	
+	}
+	
+	
+    /**
+     * @public
+     */
+	hidePressButtonEffectCallback() {
+		this._startButtonElem.classList.remove('start-view-container__start-button_focus');
+	}
 }

@@ -1,4 +1,5 @@
-import StartView from './startView';
+import * as GameState from './gamestate';
+import StartView from './startview';
 
 /**
  * Class representing game controller.
@@ -44,6 +45,28 @@ export default class Game {
         this._gameElem.style.width = this._fieldWidth + 'px';
         this._gameElem.style.height = this._fieldHeight + 'px';
 
+		/**
+		 * @type {!number}
+		 * @private
+		 */
+		this._gameState = GameState.NOT_STARTED;
+	
+		/**
+		 * Game starts at level 1
+		 *
+ 		 * @type {!number}
+		 * @private
+		 */
+		this._level = 1;
+		
+		/**
+		 * Initial labyrints size is 5 x 5
+		 *
+		 * @type {!number}
+		 * @private
+		 */
+		this._labyrinthSize = 5;
+
         //
         // TODO:
         //
@@ -74,6 +97,12 @@ export default class Game {
      */
     render() {
         this._parentElement.appendChild(this._gameElem);
+		
+		/**
+		 * @type {!number}
+		 * @private
+		 */
+		this._gameState = GameState.START_SCREEN;
         this._startScreen.render();
     }
 
@@ -84,6 +113,69 @@ export default class Game {
      * @public
      */
     onStartButtonClickCallback() {
-        console.log('onStartButtonClickCallback');
+		if (this._gameState === GameState.START_SCREEN) {
+			
+			this._gameState = GameState.REMOVING_START_SCREEN;
+			
+	   		/**
+	   		 * @type {!number}
+	   		 * @private
+	   		 */
+			const DELAY = 1000;
+			
+			this._startScreen.showPressButtonEffect();
+			this._addNewLabyrintToBack();
+			this._removeStartScreenAnimated(DELAY);
+			this._startGameplayAfterDelay(DELAY);
+		}
     }
+	
+    /**
+     * Create new labyrinth and render it to the game field.
+     * @private
+     */
+	_addNewLabyrintToBack() {
+		
+		// TODO: generate labyrinth and view and render.
+		
+	}
+	
+    /**
+     * Remove start screen animated.
+	 *
+	 * @param {!number} delay
+     * @private
+     */
+	_removeStartScreenAnimated(delay) {
+		setTimeout(this.removeStartScreenCallback.bind(this), delay);
+		this._startScreen.addClassName('view-container_hide-animated');
+	}
+	
+	/**
+	 * @public
+	 */
+	removeStartScreenCallback() {
+		this._startScreen.remove();
+	}
+	
+    /**
+     * Need to allow user to play only after animation has finished.
+	 * So set small timeout.
+	 *
+	 * @param {!number} delay
+     * @private
+     */
+	_startGameplayAfterDelay(delay) {
+		setTimeout(this.startGameplayCallback.bind(this), delay);
+	}
+	
+	/**
+	 * @public
+	 */
+	startGameplayCallback() {
+		if (this._gameState === GameState.REMOVING_START_SCREEN) {
+			this._gameState = GameState.LEVEL_GAMEPLAY;
+		}
+	}
+	
 };

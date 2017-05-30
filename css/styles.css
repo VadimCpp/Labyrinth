@@ -20,6 +20,7 @@ html, body {
 
 
 .game-container {
+	position: relative;
     height: 480px;
     width: 320px;
 }
@@ -29,22 +30,35 @@ html, body {
     border: 1px dotted gray;
 }
 
+
+/* view-container animation */
+@keyframes hide-view-animation {
+    from {opacity: 1; top: 0;}
+    to {opacity: 0; top: 100%;}
+}
+
 .view-container {
     height: 100%;
+	left: 0;
     margin: 0;
     padding: 0;
+	position: absolute;
+	right: 0;
     width: 100%;
 }
+
+.view-container_hide-animated {
+    animation-name: hide-view-animation;
+    animation-duration: 1.1s;
+}
+
+
 
 .start-view-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
 }
 
 .start-view-container__title {
@@ -54,13 +68,20 @@ html, body {
 
 .start-view-container__description {
     margin: 0;
+	text-align: center;
     padding: 0;
 }
 
 .start-view-container__start-button {
     border: 1px dotted gray;
     border-radius: 5px;
+	cursor: pointer;
     padding: 10px 0;
     text-align: center;
     width: 50%;
+}
+
+.start-view-container__start-button_focus {
+	background-color: #444;
+	color: #ddd;
 }

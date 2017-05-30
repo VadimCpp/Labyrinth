@@ -39,7 +39,7 @@ export default class View {
 
     /**
      * @param {!string} className
-     * @protected
+     * @public
      */
     addClassName(className) {
         this._viewElem.classList.add(className);
