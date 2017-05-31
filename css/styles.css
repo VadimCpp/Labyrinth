@@ -22,7 +22,7 @@ html, body {
 }
 
 .app-container-background {
-    /*background: whitesmoke;*/
+    background: lightyellow;
 }
 
 
@@ -125,9 +125,8 @@ html, body {
 /***********************************
  * Labyrinth View Container
  ***********************************/
-
 .labyrinth-view-container {
-	background-color: lightyellow;
+	background-color: #e0dec6;
 }
 
 .labyrinth-view-container__labyrinth {
