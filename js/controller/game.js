@@ -182,6 +182,9 @@ export default class Game {
 		
 		this._labyrinth.generate({width, height});
 		this._labyrinthView.renderLabyrinth(this._labyrinth);
+
+        this._player.position = this._labyrinth.startPoint;
+		this._labyrinthView.renderPlayer(this._player);
 	}
 	
     /**

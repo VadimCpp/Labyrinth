@@ -1,4 +1,5 @@
 import Labyrinth from './../model/labyrinth';
+import Player from './../model/player';
 import View from './view';
 
 /**
@@ -16,17 +17,35 @@ export default class LabyrinthView extends View {
         this.addClassName('labyrinth-view-container');
 
 		/**
-		 * @type {!Element}
+		 * @type {!number}
 		 * @private
 		 */
 		this._fieldWidth = fieldWidth;
 
 		/**
-		 * @type {!Element}
+		 * @type {!number}
 		 * @private
 		 */
 		this._fieldHeight = fieldHeight;
-		
+
+		/**
+		 * @type {!number}
+		 * @private
+		 */
+		this._cellWidth = 0;
+
+		/**
+		 * @type {!number}
+		 * @private
+		 */
+		this._cellHeight = 0;
+
+        /**
+         * @type {!Player|undefined}
+         * @private
+         */
+        this._playerElem = undefined;
+
 		/**
 		 * @type {undefined|!Function}
 		 * @public
@@ -226,15 +245,8 @@ export default class LabyrinthView extends View {
 		 */
 		let labyrinthElemSize = this._fieldWidth;
 			
-		/**
-		 * @type {!number}
-		 */
-		let cellWidth = Math.floor(labyrinthElemSize / labyrinth.width);
-		
-		/**
-		 * @type {!number}
-		 */
-		let cellHeight = Math.floor(labyrinthElemSize / labyrinth.height);
+        this._cellWidth = Math.floor(labyrinthElemSize / labyrinth.width);
+        this._cellHeight = Math.floor(labyrinthElemSize / labyrinth.height);
 		
 		let x;
 		let y;
@@ -251,14 +263,32 @@ export default class LabyrinthView extends View {
 				
 				cell.classList.add('labyrinth-view-container__labyrinth-cell');
 				cell.setAttribute('data-legend', labyrinth.getPointType({x, y}));
-				cell.style.width = cellWidth + 'px';
-				cell.style.height = cellHeight + 'px';
-				cell.style.left = (x * cellWidth) + 'px';
-				cell.style.top = (y * cellHeight) + 'px';
+				cell.style.width = this._cellWidth + 'px';
+				cell.style.height = this._cellHeight + 'px';
+				cell.style.left = (x * this._cellWidth) + 'px';
+				cell.style.top = (y * this._cellHeight) + 'px';
 				
 				this._labyrinthElem.appendChild(cell);
 			}
 		}
 	
+	}
+
+    /**
+     * @param {!Player} player
+     * @public
+     */
+	renderPlayer(player) {
+        if (!this._playerElem) {
+            this._playerElem = document.createElement('div');
+            this._playerElem.classList.add('labyrinth-view-container__labyrinth-player');
+            this._playerElem.style.width = this._cellWidth + 'px';
+            this._playerElem.style.height = this._cellHeight + 'px';
+
+            this._labyrinthElem.appendChild(this._playerElem);
+        }
+
+        this._playerElem.style.left = (player.position.x * this._cellWidth) + 'px';
+        this._playerElem.style.top = (player.position.y * this._cellHeight) + 'px';
 	}
 }
