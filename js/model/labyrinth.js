@@ -180,7 +180,7 @@ export default class Labyrinth {
 			this._startPoint = this._generateStartPoint();
 			
 			x = this._startPoint.x;
-			y = this._startPoint.y + 1;
+			y = this._startPoint.y - 1;
 			
 			this._generateLabyrinthAtPoint({ x, y });
 			
@@ -196,7 +196,7 @@ export default class Labyrinth {
 		const FREESPACE = 0;
 		
 		let x = 0;
-		let y = 0;
+		let y = this._height - 1;
 		
 		while (x <= 0 || x >= this._width - 1) {
 			x = Math.floor(Math.random() * this._width);
@@ -338,13 +338,13 @@ export default class Labyrinth {
 		const FREESPACE = 0;
 	
 		let x;
-		let y = this._height - 2;
+		let y = 1;
 
 		do {
 			x = Math.floor(Math.random() * this._width);
 		} while (x <= 0 || x >= this._width - 1 || !this.isFreeSpace({ x, y }));
 	
-		y = this._height - 1;
+		y = 0;
 		
 		this._data[y][x] = FREESPACE;
 		
