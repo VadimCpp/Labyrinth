@@ -1,8 +1,8 @@
-import * as GameState from './gamestate';
-import LabyrinthView from './labyrinthview';
-import Labyrinth from './model/labyrinth';
-import Player from './model/player';
-import StartView from './startview';
+import * as GameState from './../model/gamestate';
+import LabyrinthView from './../view/labyrinthview';
+import Labyrinth from './../model/labyrinth';
+import Player from './../model/player';
+import StartView from './../view/startview';
 
 /**
  * Class representing game controller.

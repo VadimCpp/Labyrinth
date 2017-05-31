@@ -1,4 +1,4 @@
-import Labyrinth from './model/labyrinth';
+import Labyrinth from './../model/labyrinth';
 import View from './view';
 
 /**

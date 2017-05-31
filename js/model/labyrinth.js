@@ -1,4 +1,4 @@
-import * as PointType from './../pointtype';
+import * as PointType from './pointtype';
 
 export default class Labyrinth {
 	
