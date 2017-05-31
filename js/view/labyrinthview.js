@@ -1,3 +1,4 @@
+import * as PointType from './../model/pointtype';
 import Labyrinth from './../model/labyrinth';
 import Player from './../model/player';
 import View from './view';
@@ -263,7 +264,17 @@ export default class LabyrinthView extends View {
 				let cell = document.createElement('div');
 				
 				cell.classList.add('labyrinth-view-container__labyrinth-cell');
-				cell.setAttribute('data-legend', labyrinth.getPointType({x, y}));
+				
+				/**
+				 * @type {!string}
+				 */
+				let pointType = labyrinth.getPointType({x, y});
+				
+				if (pointType === PointType.WALL && Math.floor(Math.random() * 20) === 1) {
+					cell.setAttribute('data-legend', 'wall-gdg');
+				} else {
+					cell.setAttribute('data-legend', pointType);
+				}
 				cell.style.width = this._cellWidth + 'px';
 				cell.style.height = this._cellHeight + 'px';
 				cell.style.left = (x * this._cellWidth) + 'px';
@@ -272,8 +283,8 @@ export default class LabyrinthView extends View {
 				this._labyrinthElem.appendChild(cell);
 			}
 		}
-	
 	}
+
 
     /**
      * @param {!Player} player
