@@ -106,8 +106,7 @@ html, body {
 }
 
 .start-view-container__start-button_focus {
-	background-color: #444;
-	color: #ddd;
+	background-color: #ccc;
 }
 
 
@@ -131,7 +130,7 @@ html, body {
 }
 
 .labyrinth-view-container__labyrinth-player {
-    background-color: #cccccc;
+    background-color: #ccc;
     border: 1px dotted gray;
     border-radius: 5px;
     box-sizing: border-box;
@@ -142,6 +141,8 @@ html, body {
     position: absolute;
     text-align: center;
     top: 0;
+    transition-property: top, left;
+    transition-duration: 0.2s;
 }
 
 .labyrinth-view-container__labyrinth-player::before {
@@ -184,8 +185,7 @@ html, body {
 }
 
 .labyrinth-view-container__navigation-btn_focus {
-	background-color: #444;
-	color: #ddd;
+	background-color: #ccc;
 }
 
 .labyrinth-view-container__navigation-btn_up {
