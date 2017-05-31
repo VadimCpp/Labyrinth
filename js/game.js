@@ -1,7 +1,7 @@
 import * as GameState from './gamestate';
 import LabyrinthView from './labyrinthview';
-import Labyrinth from './labyrinth';
-import Player from './player';
+import Labyrinth from './model/labyrinth';
+import Player from './model/player';
 import StartView from './startview';
 
 /**

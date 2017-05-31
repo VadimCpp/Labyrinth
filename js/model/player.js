@@ -12,7 +12,7 @@ export default class Player {
     }
 	
 	/**
-	 * @param {{ x: number, y: number }}
+	 * @param {{ x: !number, y: !number }} position
 	 * @public
 	 */
 	set position(position) {
@@ -21,7 +21,7 @@ export default class Player {
 	}
 	
 	/**
-	 * @return {{ x: number, y: number }}
+	 * @return {{ x: !number, y: !number }}
 	 * @public
 	 */
 	get position() {

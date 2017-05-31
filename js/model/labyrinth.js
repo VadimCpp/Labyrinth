@@ -1,4 +1,4 @@
-import * as PointType from './pointtype';
+import * as PointType from './../pointtype';
 
 export default class Labyrinth {
 	
@@ -22,7 +22,7 @@ export default class Labyrinth {
 		this._legend = [
 			PointType.FREESPACE,
 			PointType.WALL
-		]
+		];
 
 		let x = 0;
 		let y = 0;
@@ -182,7 +182,7 @@ export default class Labyrinth {
 			x = this._startPoint.x;
 			y = this._startPoint.y + 1;
 			
-			this._generateLabirinthAtPoint({ x, y });
+			this._generateLabyrinthAtPoint({ x, y });
 			
 			this._endPoint = this._generateEndPoint();
 		}
@@ -210,10 +210,13 @@ export default class Labyrinth {
 	/**
 	 * This is recursive function. The essencial of algorythm.
 	 *
-	 * @param {{ x:!number, y:!number }}
+	 * @param {{ x:!number, y:!number }} point
 	 * @private
 	 */
-	_generateLabirinthAtPoint(point) {
+	_generateLabyrinthAtPoint(point) {
+		/**
+		 * @const {!number}
+         */
 		const FREESPACE = 0;
 		
 		this._data[point.y][point.x] = FREESPACE;
@@ -245,23 +248,23 @@ export default class Labyrinth {
 		do {
 			directions = [];
 			
-			if (this._isPosibleToGenerateLabyrinthAtPoint(left, point)) {
+			if (this._isPossibleToGenerateLabyrinthAtPoint(left, point)) {
 				directions.push(left);
 			}
-			if (this._isPosibleToGenerateLabyrinthAtPoint(right, point)) {
+			if (this._isPossibleToGenerateLabyrinthAtPoint(right, point)) {
 				directions.push(right);
 			}
-			if (this._isPosibleToGenerateLabyrinthAtPoint(up, point)) {
+			if (this._isPossibleToGenerateLabyrinthAtPoint(up, point)) {
 				directions.push(up);
 			}
-			if (this._isPosibleToGenerateLabyrinthAtPoint(down, point)) {
+			if (this._isPossibleToGenerateLabyrinthAtPoint(down, point)) {
 				directions.push(down);
 			}
 			
 			if (directions.length) {
 				
 				let direction = Math.floor(Math.random() * directions.length);
-				this._generateLabirinthAtPoint(directions[direction]);
+				this._generateLabyrinthAtPoint(directions[direction]);
 			}
 		} while (directions.length);
 	}
@@ -273,7 +276,7 @@ export default class Labyrinth {
      * @param {{ x:!number, y:!number }} exclude
 	 * @private
 	 */
-	_isPosibleToGenerateLabyrinthAtPoint(point, exclude) {
+	_isPossibleToGenerateLabyrinthAtPoint(point, exclude) {
   	   	/**
   	   	 * @type {!boolean}
   	   	 */
