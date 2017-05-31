@@ -4,6 +4,7 @@ import LabyrinthView from './../view/labyrinthview';
 import Labyrinth from './../model/labyrinth';
 import Player from './../model/player';
 import StartView from './../view/startview';
+import LevelCompleteView from './../view/levelcompleteview';
 
 /**
  * Class representing game controller.
@@ -99,7 +100,7 @@ export default class Game {
 		// Views:
 		//  - start screen;
 		//  - labyrinth view;
-		//  - TODO:level complete screen;
+		//  - level complete screen;
 		//  - TODO:final screen.
 		//
 		
@@ -109,7 +110,6 @@ export default class Game {
          */
         this._startScreen = new StartView(this._gameElem);
         this._startScreen.onStartButtonClick = this.onStartButtonClickCallback.bind(this);
-		
 
 		/**
 		 * @type {!LabyrinthView}
@@ -118,7 +118,12 @@ export default class Game {
 		this._labyrinthView = new LabyrinthView(this._gameElem, this._fieldWidth, this._fieldHeight);
 		this._labyrinthView.onKeyPressed = this.onKeyPressedCallback.bind(this);
 
-		// TODO:level complete screen;
+        /**
+         * @type {!LevelCompleteView}
+         * @private
+         */
+        this._levelCompleteView = new LevelCompleteView(this._gameElem);
+
 		// TODO:final screen.
 		
 		document.onkeydown = this.onKeyboardCallback.bind(this);
@@ -224,7 +229,9 @@ export default class Game {
 	startGameplayCallback() {
 		if (this._gameState === GameState.REMOVING_START_SCREEN) {
 			this._gameState = GameState.LEVEL_GAMEPLAY;
-		}
+		} else if (this._gameState === GameState.REMOVING_LEVEL_COMPLETE_SCREEN) {
+            this._gameState = GameState.LEVEL_GAMEPLAY;
+        }
 	}
 	
 	
@@ -238,8 +245,6 @@ export default class Game {
 		const UP_CODE = 38;
 		const ENTER_CODE = 13;
 		const SPACE_CODE = 32;
-		
-		let skipRendering = false;
 		
 		evt = evt || window.event;
 		
@@ -383,8 +388,16 @@ export default class Game {
                     this._showFinalScreen();
 
                 } else {
+                    /**
+                     * @const {!number}
+                     */
+                    const DELAY = 1000;
+
                     this._gameState = GameState.LEVEL_COMPLETE;
-                    this._handleLeveteComplete();
+                    this._level += 1;
+
+                    this._showLevelCompleteViewAnimated(DELAY);
+
                 }
 
             } else {
@@ -395,6 +408,7 @@ export default class Game {
         }
     }
 
+
     /**
      * @private
      */
@@ -402,10 +416,87 @@ export default class Game {
         // TODO:
     }
 
+
     /**
+     * Show level complete screen animated.
+     *
+     * @param {!number} delay
      * @private
      */
-    _handleLeveteComplete() {
-        // TODO:
+    _showLevelCompleteViewAnimated(delay) {
+
+        this._levelCompleteView.render(this._level);
+        this._levelCompleteView.addClassName('view-container_show-animated');
+
+        setTimeout(this.levelCompleteIsShownCallback.bind(this), delay);
     }
+
+    /**
+     * @public
+     */
+    levelCompleteIsShownCallback() {
+        this._levelCompleteView.removeClassName('view-container_show-animated');
+
+        /**
+         * @const {!number}
+         */
+        const PAUSE_DELAY = 2000;
+
+        this._labyrinthSize += 1;
+
+        /**
+         * @type {!number}
+         */
+        let width = this._labyrinthSize;
+
+        /**
+         * @type {!number}
+         */
+        let height = this._labyrinthSize;
+
+        this._labyrinth.generate({width, height});
+        this._labyrinthView.renderLabyrinth(this._labyrinth);
+
+        this._player.position = this._labyrinth.startPoint;
+        this._labyrinthView.renderPlayer(this._player);
+
+        setTimeout(this.newLevelPreparedCallback.bind(this), PAUSE_DELAY);
+    }
+
+    /**
+     * @public
+     */
+    newLevelPreparedCallback() {
+        /**
+         * @const {!number}
+         */
+        const DELAY = 1000;
+
+        this._gameState = GameState.REMOVING_LEVEL_COMPLETE_SCREEN;
+
+        this._removeLevelCompleteViewAnimated(DELAY);
+        this._startGameplayAfterDelay(DELAY);
+    }
+
+
+    /**
+     * Remove start screen animated.
+     *
+     * @param {!number} delay
+     * @private
+     */
+    _removeLevelCompleteViewAnimated(delay) {
+        setTimeout(this.removeLevelCompleteViewCallback.bind(this), delay);
+        this._levelCompleteView.addClassName('view-container_hide-animated');
+    }
+
+
+    /**
+     * @public
+     */
+    removeLevelCompleteViewCallback() {
+        this._levelCompleteView.removeClassName('view-container_hide-animated');
+        this._levelCompleteView.remove();
+    }
+
 };

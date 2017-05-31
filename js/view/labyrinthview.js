@@ -238,6 +238,7 @@ export default class LabyrinthView extends View {
 		//
 		while (this._labyrinthElem.hasChildNodes()) {
 		    this._labyrinthElem.removeChild(this._labyrinthElem.lastChild);
+            this._playerElem = undefined;
 		}
 	
 		/**

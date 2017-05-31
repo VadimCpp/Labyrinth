@@ -46,6 +46,14 @@ export default class View {
     }
 
     /**
+     * @param {!string} className
+     * @public
+     */
+    removeClassName(className) {
+        this._viewElem.classList.remove(className);
+    }
+
+    /**
      * @param {!Element} element
      * @protected
      */
