@@ -54,7 +54,7 @@ export default class LevelCompleteView extends View {
         let titleElem = document.createElement('h1');
 
         titleElem.classList.add('level-complete-view-container__title');
-        titleElem.innerHTML = 'Уровень 1';
+        titleElem.innerHTML = 'Level 1';
 
         return titleElem;
     }
@@ -86,7 +86,7 @@ export default class LevelCompleteView extends View {
         let loadingElem = document.createElement('h2');
 
         loadingElem.classList.add('level-complete-view-container__loading');
-        loadingElem.innerHTML = 'Загрузка...';
+        loadingElem.innerHTML = 'Loading...';
 
         return loadingElem;
     }
@@ -96,7 +96,7 @@ export default class LevelCompleteView extends View {
      * @public
      */
     render(nextLevel) {
-        this._titleElem.innerHTML = 'Уровень ' + nextLevel;
+        this._titleElem.innerHTML = 'Level ' + nextLevel;
 		this._imageElem.src = '../img/level/l' + nextLevel + '.jpg';
 		console.log(this._imageElem.src);
         super.render();

@@ -30,6 +30,11 @@ export default class FinalView extends View {
          * @type {!Element}
          */
         let titleElem = this._createTitle();
+		
+		/**
+		 * @type {!Element}
+		 */
+		let imageElem = this._createImage();
 
         /**
          * @type {!Element}
@@ -43,6 +48,7 @@ export default class FinalView extends View {
         this._playAgainButtonElem = this._createPlayAgainButton();
 
         this.appendChild(titleElem);
+		this.appendChild(imageElem);
         this.appendChild(descriptionElem);
         this.appendChild(this._playAgainButtonElem);
     }
@@ -59,10 +65,26 @@ export default class FinalView extends View {
         let titleElem = document.createElement('h1');
 
         titleElem.classList.add('final-view-container__title');
-        titleElem.innerHTML = 'Это победа';
+        titleElem.innerHTML = 'You win!';
 
         return titleElem;
     }
+
+
+	/**
+	 * @return {!Element}
+	 * @private
+	 */
+	_createImage() {
+		/**
+		 * @type {!Element}
+		 */
+		let imageElem = document.createElement('img');
+
+		imageElem.classList.add('final-view-container__img');
+
+		return imageElem;
+	}
 
 
     /**
@@ -76,7 +98,7 @@ export default class FinalView extends View {
         let descriptionElem = document.createElement('h2');
 
         descriptionElem.classList.add('final-view-container__description');
-        descriptionElem.innerHTML = 'Ленни полностью освободился от забот и нашел выход из лабиринта за ...';
+        descriptionElem.innerHTML = 'Lenni is completely happy.';
 
         return descriptionElem;
     }
@@ -93,7 +115,7 @@ export default class FinalView extends View {
         let playAgainButtonElem = document.createElement('div');
 
         playAgainButtonElem.classList.add('final-view-container__play-again-button');
-        playAgainButtonElem.innerHTML = 'Еще раз!';
+        playAgainButtonElem.innerHTML = 'Play again';
         playAgainButtonElem.onclick = this.onPlayAgainButtonClickCallback.bind(this);
 
         return playAgainButtonElem;

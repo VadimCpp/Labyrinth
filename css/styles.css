@@ -1,4 +1,5 @@
 html, body {
+	font-family: 'Patrick Hand', cursive;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -97,18 +98,22 @@ html, body {
 }
 
 .start-view-container__title {
+	font-size: 42px;      
     margin: 0;
     padding: 0;
 }
 
 .start-view-container__description {
+	font-size: 30px;      	
     margin: 0;
 	text-align: center;
     padding: 0;
 }
 
 .start-view-container__start-button {
-    border: 1px dotted gray;
+	background-color: #75B4D0;
+	color: white;
+	font-size: 30px;  
     border-radius: 5px;
 	cursor: pointer;
     padding: 10px 0;
@@ -117,7 +122,7 @@ html, body {
 }
 
 .start-view-container__start-button_focus {
-	background-color: #ccc;
+	background-color: #5594B0;
 }
 
 
@@ -257,6 +262,7 @@ html, body {
 }
 
 .level-complete-view-container__title {
+	font-size: 42px;  
     margin: 0;
     text-align: center;
     padding: 0;
@@ -268,6 +274,7 @@ html, body {
 }
 
 .level-complete-view-container__loading {
+	font-size: 30px;  
     margin: 0;
     text-align: center;
     padding: 0;
@@ -289,18 +296,29 @@ html, body {
 }
 
 .final-view-container__title {
+	font-size: 42px; 
     margin: 0;
     padding: 0;
 }
 
+.final-view-container__img {
+    background-image: url(../img/final.jpg);
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
 .final-view-container__description {
+	font-size: 30px;
     margin: 0;
     text-align: center;
     padding: 0;
 }
 
 .final-view-container__play-again-button {
-    border: 1px dotted gray;
+	background-color: #75B4D0;
+	color: white;
+	font-size: 30px;  
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 0;
@@ -309,5 +327,5 @@ html, body {
 }
 
 .final-view-container__play-again-button_focus {
-    background-color: #ccc;
+    background-color: #5594B0;
 }

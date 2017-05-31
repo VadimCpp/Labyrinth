@@ -59,7 +59,7 @@ export default class StartView extends View {
         let titleElem = document.createElement('h1');
 
         titleElem.classList.add('start-view-container__title');
-        titleElem.innerHTML = 'Лабиринт';
+        titleElem.innerHTML = 'Labyrinth';
 
         return titleElem;
     }
@@ -76,7 +76,7 @@ export default class StartView extends View {
         let descriptionElem = document.createElement('h2');
 
         descriptionElem.classList.add('start-view-container__description');
-        descriptionElem.innerHTML = 'Ленни свободен от забот и ищет выход из лабиринта';
+        descriptionElem.innerHTML = 'Help Lenni to find a way...';
 
         return descriptionElem;
     }
@@ -93,7 +93,7 @@ export default class StartView extends View {
         let startButtonElem = document.createElement('div');
 
         startButtonElem.classList.add('start-view-container__start-button');
-        startButtonElem.innerHTML = 'Поехали!';
+        startButtonElem.innerHTML = 'GO!';
         startButtonElem.onclick = this.onStartButtonClickCallback.bind(this);
 
         return startButtonElem;
