@@ -199,7 +199,9 @@ export default class Game {
 		if (this._gameState === GameState.LEVEL_GAMEPLAY) {
 			
 			console.log('onKeyPressedCallback ' + key);
-
+			
+			this._labyrinthView.showPressButtonEffect(key);
+			
 			//
 			// TODO: keyCode
 			//

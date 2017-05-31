@@ -135,6 +135,11 @@ html, body {
 	position: absolute;
 }
 
+.labyrinth-view-container__navigation-btn_focus {
+	background-color: #444;
+	color: #ddd;
+}
+
 .labyrinth-view-container__navigation-btn_up {
 	content: 'up';
 	top: 0;

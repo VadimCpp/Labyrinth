@@ -118,7 +118,7 @@ export default class StartView extends View {
 		/**
 		 * @const {!number}
 		 */
-		const DELAY = 200;
+		const DELAY = 100;
 		
 		this._startButtonElem.classList.add('start-view-container__start-button_focus');
 		setTimeout(this.hidePressButtonEffectCallback.bind(this), DELAY);

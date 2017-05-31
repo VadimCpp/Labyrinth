@@ -161,4 +161,48 @@ export default class LabyrinthView extends View {
 			this.onKeyPressed(key);
 		}
 	}
+	
+	
+    /**
+	 * @param {!string} key
+     * @public
+     */
+	showPressButtonEffect(key) {
+		
+		/**
+		 * @const {!number}
+		 */
+		const DELAY = 100;
+		
+		switch (key) {
+			case 'up':
+				this._upButtonElem.classList.add('labyrinth-view-container__navigation-btn_focus');
+				setTimeout(this.hidePressButtonEffectCallback.bind(this, this._upButtonElem), DELAY);
+				break;
+			case 'down':
+				this._downButtonElem.classList.add('labyrinth-view-container__navigation-btn_focus');
+				setTimeout(this.hidePressButtonEffectCallback.bind(this, this._downButtonElem), DELAY);
+				break;
+			case 'left':
+				this._leftButtonElem.classList.add('labyrinth-view-container__navigation-btn_focus');
+				setTimeout(this.hidePressButtonEffectCallback.bind(this, this._leftButtonElem), DELAY);
+				break;
+			case 'right':
+				this._rightButtonElem.classList.add('labyrinth-view-container__navigation-btn_focus');
+				setTimeout(this.hidePressButtonEffectCallback.bind(this, this._rightButtonElem), DELAY);
+				break;
+			default:
+				break;
+		}
+	
+	}
+	
+	
+    /**
+	 * @param {!Element} button
+     * @public
+     */
+	hidePressButtonEffectCallback(button) {
+		button.classList.remove('labyrinth-view-container__navigation-btn_focus');
+	}
 }
