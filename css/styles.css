@@ -127,7 +127,7 @@ html, body {
  ***********************************/
 
 .labyrinth-view-container {
-    /* empty */
+	background-color: lightyellow;
 }
 
 .labyrinth-view-container__labyrinth {
@@ -175,9 +175,9 @@ html, body {
 }
 
 .labyrinth-view-container__navigation {
+	height: 33.3%;
 	position: relative;
 	width: 100%;
-	height: 33.3%;
 }
 
 .labyrinth-view-container__navigation-btn {
