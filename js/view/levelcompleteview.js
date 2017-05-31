@@ -30,7 +30,7 @@ export default class LevelCompleteView extends View {
          * @type {!Element}
          * @private
          */
-        this._image = this._createImage();
+        this._imageElem = this._createImage();
 
         /**
          * @type {!Element}
@@ -38,7 +38,7 @@ export default class LevelCompleteView extends View {
         let loading = this._createLoading();
 
         this.appendChild(this._titleElem);
-        this.appendChild(this._image);
+        this.appendChild(this._imageElem);
         this.appendChild(loading);
     }
 
@@ -97,6 +97,8 @@ export default class LevelCompleteView extends View {
      */
     render(nextLevel) {
         this._titleElem.innerHTML = 'Уровень ' + nextLevel;
+		this._imageElem.src = '../img/level/l' + nextLevel + '.jpg';
+		console.log(this._imageElem.src);
         super.render();
     }
 }

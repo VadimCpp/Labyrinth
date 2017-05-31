@@ -462,7 +462,7 @@ export default class Game {
         /**
          * @const {!number}
          */
-        const PAUSE_DELAY = 1000;
+        const PAUSE_DELAY = 2000;
 
         this._labyrinthSize += 1;
 
