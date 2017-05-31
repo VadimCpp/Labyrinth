@@ -1,5 +1,6 @@
-import * as GameState from './../model/gamestate';
+import * as GameConfig from './../gameconfig';
 import * as Direction from './../model/direction';
+import * as GameState from './../model/gamestate';
 import LabyrinthView from './../view/labyrinthview';
 import Labyrinth from './../model/labyrinth';
 import Player from './../model/player';
@@ -388,12 +389,7 @@ export default class Game {
 
             if (JSON.stringify(this._player.position) === JSON.stringify(this._labyrinth.endPoint)) {
 
-                /**
-                 * @const {!number}
-                 */
-                const FINAL_LEVEL = 1;
-
-                if (this._level >= FINAL_LEVEL) {
+                if (this._level >= GameConfig.LEVELS_COUNT) {
                     this._gameState = GameState.FINAL_LEVEL_COMPLETE;
                     this._showFinalScreen();
 
@@ -581,6 +577,7 @@ export default class Game {
      * @public
      */
     removeFinalScreenCallback() {
+        this._finalScreen.removeClassName('view-container_hide-animated');
         this._finalScreen.remove();
     }
 
