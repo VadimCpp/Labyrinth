@@ -23,20 +23,26 @@ export default class Game {
         /**
          * @const {!number}
          */
-        const MIN_FIELD_HEIGHT = 480;
+        const MIN_BASE_SIZE = 160;
+
+        /**
+         * @type {!number}
+         */
+		let baseSize = Math.min(Math.floor(window.innerHeight / 3), Math.floor(window.innerWidth / 2));
+
+        baseSize = Math.max(baseSize, MIN_BASE_SIZE);
 
         /**
          * @type {!number}
          * @private
          */
-        this._fieldHeight = Math.floor(window.innerHeight / 3) * 3;
-        this._fieldHeight = Math.max(this._fieldHeight, MIN_FIELD_HEIGHT);
+        this._fieldHeight = baseSize * 3;
 
         /**
          * @type {!number}
          * @private
          */
-        this._fieldWidth = this._fieldHeight / 3 * 2;
+        this._fieldWidth = baseSize * 2;
 
         /**
          * @type {!Element}
