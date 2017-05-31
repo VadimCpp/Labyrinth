@@ -370,7 +370,42 @@ export default class Game {
      */
     moveFinishedCallback() {
         if (this._gameState === GameState.PLAYER_IS_MOVING) {
-            this._gameState = GameState.LEVEL_GAMEPLAY;
+
+            if (JSON.stringify(this._player.position) === JSON.stringify(this._labyrinth.endPoint)) {
+
+                /**
+                 * @const {!number}
+                 */
+                const FINAL_LEVEL = 15;
+
+                if (this._level >= FINAL_LEVEL) {
+                    this._gameState = GameState.FINAL_LEVEL_COMPLETE;
+                    this._showFinalScreen();
+
+                } else {
+                    this._gameState = GameState.LEVEL_COMPLETE;
+                    this._handleLeveteComplete();
+                }
+
+            } else {
+
+                // continue game play
+                this._gameState = GameState.LEVEL_GAMEPLAY;
+            }
         }
+    }
+
+    /**
+     * @private
+     */
+    _showFinalScreen() {
+        // TODO:
+    }
+
+    /**
+     * @private
+     */
+    _handleLeveteComplete() {
+        // TODO:
     }
 };
