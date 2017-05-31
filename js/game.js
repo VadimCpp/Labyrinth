@@ -1,5 +1,7 @@
 import * as GameState from './gamestate';
 import LabyrinthView from './labyrinthview';
+import Labyrinth from './labyrinth';
+import Player from './player';
 import StartView from './startview';
 
 /**
@@ -68,20 +70,32 @@ export default class Game {
 		 */
 		this._labyrinthSize = 5;
 
-        //
-        // TODO:
-        //
-        // Models:
-        //  - player;
-        //  - labyrinth.
-        //
-        // Views:
-        //  - start screen;
-        //  - game screen;
-        //  - finish level screen;
-        //  - final screen;
-        //
-
+		// 
+		// Models:
+		//  - player;
+		//  - labyrinth.
+		//
+		
+		/**
+		 * @type {!Player}
+		 * @private
+		 */
+		this._player = new Player();
+		
+		/**
+		 * @type {!Labyrinth}
+		 * @private
+		 */
+		this._labyrinth = new Labyrinth();
+		
+		// 
+		// Views:
+		//  - start screen;
+		//  - labyrinth view;
+		//  - TODO:level complete screen;
+		//  - TODO:final screen.
+		//
+		
         /**
          * @type {!StartView}
          * @private
@@ -89,15 +103,18 @@ export default class Game {
         this._startScreen = new StartView(this._gameElem);
         this._startScreen.onStartButtonClick = this.onStartButtonClickCallback.bind(this);
 		
-		
-       /**
-        * @type {!LabyrinthView}
-        * @private
-        */
-       this._labyrinthView = new LabyrinthView(this._gameElem, this._fieldWidth, this._fieldHeight);
-       this._labyrinthView.onKeyPressed = this.onKeyPressedCallback.bind(this);
 
-        // TODO: handleKeyBoard
+		/**
+		 * @type {!LabyrinthView}
+		 * @private
+		 */
+		this._labyrinthView = new LabyrinthView(this._gameElem, this._fieldWidth, this._fieldHeight);
+		this._labyrinthView.onKeyPressed = this.onKeyPressedCallback.bind(this);
+
+		// TODO:level complete screen;
+		// TODO:final screen.
+		
+		document.onkeydown = this.onKeyboardCallback.bind(this);
     }
 
     /**
@@ -144,11 +161,21 @@ export default class Game {
      * @private
      */
 	_addNewLabyrintToBack() {
-		//
-		// TODO:
-		//
+		
 		this._labyrinthView.render();
-
+		
+		/**
+		 * @type {!number}
+		 */
+		let width = this._labyrinthSize;
+	
+		/**
+		 * @type {!number}
+		 */
+		let height = this._labyrinthSize;
+		
+		this._labyrinth.generate({width, height});
+		this._labyrinthView.renderLabyrinth(this._labyrinth);
 	}
 	
     /**
@@ -187,6 +214,54 @@ export default class Game {
 	startGameplayCallback() {
 		if (this._gameState === GameState.REMOVING_START_SCREEN) {
 			this._gameState = GameState.LEVEL_GAMEPLAY;
+		}
+	}
+	
+	
+	/**
+	 * @public
+	 */ 
+	onKeyboardCallback(evt) {
+		const RIGHT_CODE = 39;
+		const DOWN_CODE = 40;
+		const LEFT_CODE = 37;
+		const UP_CODE = 38;
+		const ENTER_CODE = 13;
+		const SPACE_CODE = 32;
+		
+		let skipRendering = false;
+		
+		evt = evt || window.event;
+		
+		switch(evt.keyCode) {
+			case RIGHT_CODE: 
+				if (this._gameState === GameState.LEVEL_GAMEPLAY) {
+					this.onKeyPressedCallback('right');
+				}
+				break;
+			case LEFT_CODE: 
+				if (this._gameState === GameState.LEVEL_GAMEPLAY) {
+					this.onKeyPressedCallback('left');
+				}
+				break;
+			case UP_CODE: 
+				if (this._gameState === GameState.LEVEL_GAMEPLAY) {
+					this.onKeyPressedCallback('up');
+				}
+				break;
+			case DOWN_CODE: 
+				if (this._gameState === GameState.LEVEL_GAMEPLAY) {
+					this.onKeyPressedCallback('down');
+				}
+				break;
+			case ENTER_CODE: 
+			case SPACE_CODE: 
+				if (this._gameState === GameState.START_SCREEN) {
+					this.onStartButtonClickCallback();
+				}
+				break;				
+			default: 
+				break;
 		}
 	}
 	
