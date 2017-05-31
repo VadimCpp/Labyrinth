@@ -6,3 +6,4 @@ export const PLAYER_IS_MOVING = 4;
 export const LEVEL_COMPLETE = 5;
 export const REMOVING_LEVEL_COMPLETE_SCREEN = 6;
 export const FINAL_LEVEL_COMPLETE = 7;
+export const REMOVING_FINAL_SCREEN = 8;

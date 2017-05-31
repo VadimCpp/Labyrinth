@@ -270,3 +270,42 @@ html, body {
     text-align: center;
     padding: 0;
 }
+
+
+
+/***********************************
+ * Final View Container
+ ***********************************/
+
+.final-view-container {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.final-view-container__title {
+    margin: 0;
+    padding: 0;
+}
+
+.final-view-container__description {
+    margin: 0;
+    text-align: center;
+    padding: 0;
+}
+
+.final-view-container__play-again-button {
+    border: 1px dotted gray;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 0;
+    text-align: center;
+    width: 50%;
+}
+
+.final-view-container__play-again-button_focus {
+    background-color: #ccc;
+}

@@ -4,6 +4,7 @@ import LabyrinthView from './../view/labyrinthview';
 import Labyrinth from './../model/labyrinth';
 import Player from './../model/player';
 import StartView from './../view/startview';
+import FinalView from './../view/finalview';
 import LevelCompleteView from './../view/levelcompleteview';
 
 /**
@@ -101,7 +102,7 @@ export default class Game {
 		//  - start screen;
 		//  - labyrinth view;
 		//  - level complete screen;
-		//  - TODO:final screen.
+		//  - final screen.
 		//
 		
         /**
@@ -124,8 +125,13 @@ export default class Game {
          */
         this._levelCompleteView = new LevelCompleteView(this._gameElem);
 
-		// TODO:final screen.
-		
+        /**
+         * @type {!FinalView}
+         * @private
+         */
+        this._finalScreen = new FinalView(this._gameElem);
+        this._finalScreen.onPlayAgainButtonClick = this.onPlayAgainButtonClickCallback.bind(this);
+
 		document.onkeydown = this.onKeyboardCallback.bind(this);
     }
 
@@ -231,6 +237,8 @@ export default class Game {
 			this._gameState = GameState.LEVEL_GAMEPLAY;
 		} else if (this._gameState === GameState.REMOVING_LEVEL_COMPLETE_SCREEN) {
             this._gameState = GameState.LEVEL_GAMEPLAY;
+		} else if (this._gameState === GameState.REMOVING_FINAL_SCREEN) {
+            this._gameState = GameState.LEVEL_GAMEPLAY;
         }
 	}
 	
@@ -273,7 +281,9 @@ export default class Game {
 			case SPACE_CODE: 
 				if (this._gameState === GameState.START_SCREEN) {
 					this.onStartButtonClickCallback();
-				}
+				} else if (this._gameState === GameState.FINAL_LEVEL_COMPLETE) {
+                    this.onPlayAgainButtonClickCallback();
+                }
 				break;				
 			default: 
 				break;
@@ -381,7 +391,7 @@ export default class Game {
                 /**
                  * @const {!number}
                  */
-                const FINAL_LEVEL = 15;
+                const FINAL_LEVEL = 1;
 
                 if (this._level >= FINAL_LEVEL) {
                     this._gameState = GameState.FINAL_LEVEL_COMPLETE;
@@ -413,7 +423,23 @@ export default class Game {
      * @private
      */
     _showFinalScreen() {
-        // TODO:
+        /**
+         * @const {!number}
+         */
+        const PAUSE_DELAY = 1000;
+
+        this._finalScreen.render();
+        this._finalScreen.addClassName('view-container_show-animated');
+
+        setTimeout(this.finalScreenIsShownCallback.bind(this), PAUSE_DELAY);
+    }
+
+
+    /**
+     * @public
+     */
+    finalScreenIsShownCallback() {
+        this._finalScreen.removeClassName('view-container_show-animated');
     }
 
 
@@ -440,7 +466,7 @@ export default class Game {
         /**
          * @const {!number}
          */
-        const PAUSE_DELAY = 2000;
+        const PAUSE_DELAY = 1000;
 
         this._labyrinthSize += 1;
 
@@ -497,6 +523,65 @@ export default class Game {
     removeLevelCompleteViewCallback() {
         this._levelCompleteView.removeClassName('view-container_hide-animated');
         this._levelCompleteView.remove();
+    }
+
+
+    /**
+     * @public
+     */
+    onPlayAgainButtonClickCallback() {
+        if (this._gameState === GameState.FINAL_LEVEL_COMPLETE) {
+
+            this._gameState = GameState.REMOVING_FINAL_SCREEN;
+
+            this._finalScreen.showPressButtonEffect();
+
+            /**
+             * @type {!number}
+             * @private
+             */
+            const DELAY = 1000;
+
+            this._level = 1;
+            this._labyrinthSize = 5;
+
+            /**
+             * @type {!number}
+             */
+            let width = this._labyrinthSize;
+
+            /**
+             * @type {!number}
+             */
+            let height = this._labyrinthSize;
+
+            this._labyrinth.generate({width, height});
+            this._labyrinthView.renderLabyrinth(this._labyrinth);
+
+            this._player.position = this._labyrinth.startPoint;
+            this._labyrinthView.renderPlayer(this._player);
+
+            this._removeFinalScreenAnimated(DELAY);
+            this._startGameplayAfterDelay(DELAY);
+        }
+    }
+
+    /**
+     * Remove start screen animated.
+     *
+     * @param {!number} delay
+     * @private
+     */
+    _removeFinalScreenAnimated(delay) {
+        setTimeout(this.removeFinalScreenCallback.bind(this), delay);
+        this._finalScreen.addClassName('view-container_hide-animated');
+    }
+
+    /**
+     * @public
+     */
+    removeFinalScreenCallback() {
+        this._finalScreen.remove();
     }
 
 };
