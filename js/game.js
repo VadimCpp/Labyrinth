@@ -1,4 +1,5 @@
 import * as GameState from './gamestate';
+import LabyrinthView from './labyrinthview';
 import StartView from './startview';
 
 /**
@@ -87,6 +88,14 @@ export default class Game {
          */
         this._startScreen = new StartView(this._gameElem);
         this._startScreen.onStartButtonClick = this.onStartButtonClickCallback.bind(this);
+		
+		
+       /**
+        * @type {!LabyrinthView}
+        * @private
+        */
+       this._labyrinthView = new LabyrinthView(this._gameElem, this._fieldWidth, this._fieldHeight);
+       this._labyrinthView.onKeyPressed = this.onKeyPressedCallback.bind(this);
 
         // TODO: handleKeyBoard
     }
@@ -135,9 +144,11 @@ export default class Game {
      * @private
      */
 	_addNewLabyrintToBack() {
-		
-		// TODO: generate labyrinth and view and render.
-		
+		//
+		// TODO:
+		//
+		this._labyrinthView.render();
+
 	}
 	
     /**
@@ -169,6 +180,7 @@ export default class Game {
 		setTimeout(this.startGameplayCallback.bind(this), delay);
 	}
 	
+	
 	/**
 	 * @public
 	 */
@@ -178,4 +190,19 @@ export default class Game {
 		}
 	}
 	
+	
+	/**
+	 * @param {!string} key
+	 * @public
+	 */
+	onKeyPressedCallback(key) {
+		if (this._gameState === GameState.LEVEL_GAMEPLAY) {
+			
+			console.log('onKeyPressedCallback ' + key);
+
+			//
+			// TODO: keyCode
+			//
+		}	
+	}
 };
