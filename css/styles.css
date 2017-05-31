@@ -39,8 +39,7 @@ html, body {
 }
 
 .game-container-background {
-    box-sizing: border-box;
-    border: 1px dotted gray;
+	/* empty */
 }
 
 
@@ -183,8 +182,6 @@ html, body {
 
 .labyrinth-view-container__navigation-btn {
     align-items: center;
-    border: 1px dotted gray;
-    border-radius: 50%;
 	cursor: pointer;
     display: flex;
     justify-content: center;
@@ -194,46 +191,55 @@ html, body {
 }
 
 .labyrinth-view-container__navigation-btn_focus {
-	background-color: #ccc;
+	/* empty */
 }
 
 .labyrinth-view-container__navigation-btn_up {
+    background-image: url(../img/arrow-up.png);
+    background-size: cover;
 	top: 0;
 	left: 0;
 }
 
-.labyrinth-view-container__navigation-btn_up::before {
-    content: 'up';
+.labyrinth-view-container__navigation-btn_up.labyrinth-view-container__navigation-btn_focus {
+    background-image: url(../img/arrow-up-clicked.png);
+    background-size: cover;
 }
 
 .labyrinth-view-container__navigation-btn_down {
-	content: 'down';
+    background-image: url(../img/arrow-down.png);
+    background-size: cover;
 	top: 0;
 	left: 0;
 }
 
-.labyrinth-view-container__navigation-btn_down::before {
-    content: 'down';
+.labyrinth-view-container__navigation-btn_down.labyrinth-view-container__navigation-btn_focus {
+    background-image: url(../img/arrow-down-clicked.png);
+    background-size: cover;
 }
 
 .labyrinth-view-container__navigation-btn_left {
-	content: 'left';
+    background-image: url(../img/arrow-left.png);
+    background-size: cover;
 	top: 0;
 	left: 0;
 }
 
-.labyrinth-view-container__navigation-btn_left::before {
-    content: 'left';
+.labyrinth-view-container__navigation-btn_left.labyrinth-view-container__navigation-btn_focus {
+    background-image: url(../img/arrow-left-clicked.png);
+    background-size: cover;
 }
 
 .labyrinth-view-container__navigation-btn_right {
-	content: 'right';
+    background-image: url(../img/arrow-right.png);
+    background-size: cover;
 	top: 0;
 	left: 0;
 }
 
-.labyrinth-view-container__navigation-btn_right::before {
-    content: 'right';
+.labyrinth-view-container__navigation-btn_right.labyrinth-view-container__navigation-btn_focus {
+    background-image: url(../img/arrow-right-clicked.png);
+    background-size: cover;
 }
 
 
