@@ -139,7 +139,12 @@ html, body {
     margin: 0;
     padding: 0;
 	position: absolute;
+    text-align: center;
 	top: 0;
+}
+
+.labyrinth-view-container__labyrinth-cell[data-legend="wall"]::before {
+    content: 'w';
 }
 
 .labyrinth-view-container__navigation {
@@ -149,10 +154,14 @@ html, body {
 }
 
 .labyrinth-view-container__navigation-btn {
+    align-items: center;
     border: 1px dotted gray;
     border-radius: 50%;
 	cursor: pointer;
+    display: flex;
+    justify-content: center;
 	text-align: center;
+    vertical-align: middle;
 	position: absolute;
 }
 
@@ -162,9 +171,12 @@ html, body {
 }
 
 .labyrinth-view-container__navigation-btn_up {
-	content: 'up';
 	top: 0;
 	left: 0;
+}
+
+.labyrinth-view-container__navigation-btn_up::before {
+    content: 'up';
 }
 
 .labyrinth-view-container__navigation-btn_down {
@@ -173,14 +185,26 @@ html, body {
 	left: 0;
 }
 
+.labyrinth-view-container__navigation-btn_down::before {
+    content: 'down';
+}
+
 .labyrinth-view-container__navigation-btn_left {
 	content: 'left';
 	top: 0;
 	left: 0;
 }
 
+.labyrinth-view-container__navigation-btn_left::before {
+    content: 'left';
+}
+
 .labyrinth-view-container__navigation-btn_right {
 	content: 'right';
 	top: 0;
 	left: 0;
+}
+
+.labyrinth-view-container__navigation-btn_right::before {
+    content: 'right';
 }

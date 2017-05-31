@@ -250,7 +250,7 @@ export default class LabyrinthView extends View {
 				let cell = document.createElement('div');
 				
 				cell.classList.add('labyrinth-view-container__labyrinth-cell');
-				cell.setAttribute('data', 'legend:' + labyrinth.getPointType({x, y}));
+				cell.setAttribute('data-legend', labyrinth.getPointType({x, y}));
 				cell.style.width = cellWidth + 'px';
 				cell.style.height = cellHeight + 'px';
 				cell.style.left = (x * cellWidth) + 'px';
