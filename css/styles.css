@@ -89,7 +89,7 @@ html, body {
 
 .start-view-container {
     align-items: center;
-    background-color: #fff;
+    background-color: #e0dec6;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -249,7 +249,7 @@ html, body {
 
 .level-complete-view-container {
     align-items: center;
-    background-color: #fff;
+    background-color: #e0dec6;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -281,7 +281,7 @@ html, body {
 
 .final-view-container {
     align-items: center;
-    background-color: #fff;
+    background-color: #e0dec6;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
