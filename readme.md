@@ -1,8 +1,20 @@
 ## Labyrinth ##
 
-Тут будет лабиринт.
+Игра лабиринт:
+http://labi.vadimcpp.ru/
 
-### JSON example ###
+Скрин:
+TODO
+
+### Getting started ###
+
+<pre>
+	npm install
+	npm run webpack
+	npm run start
+</pre>
+
+### Labyrinth structure ###
 
 <pre>
 {
