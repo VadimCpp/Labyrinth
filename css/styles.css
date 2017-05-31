@@ -32,10 +32,10 @@ html, body {
  ***********************************/
 
 .game-container {
-    height: 480px;
+    min-height: 480px;
+    min-width: 320px;
 	overflow: hidden;
 	position: relative;
-    width: 320px;
 }
 
 .game-container-background {
@@ -59,6 +59,8 @@ html, body {
     height: 100%;
 	left: 0;
     margin: 0;
+    min-height: 480px;
+    min-width: 320px;
     padding: 0;
 	position: absolute;
 	right: 0;
@@ -77,10 +79,10 @@ html, body {
  ***********************************/
 
 .start-view-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
 }
 
 .start-view-container__title {
@@ -115,7 +117,7 @@ html, body {
  ***********************************/
 
 .labyrinth-view-container {
-	
+    /* empty */
 }
 
 .labyrinth-view-container__labyrinth {
