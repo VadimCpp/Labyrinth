@@ -3,8 +3,7 @@
 Игра лабиринт:
 http://labi.vadimcpp.ru/
 
-Скрин:
-TODO
+![screen](https://github.com/VadimCpp/Labyrinth/blob/master/screen.jpg)
 
 ### Getting started ###
 
