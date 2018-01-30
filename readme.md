@@ -6,7 +6,9 @@ http://labi.vadimcpp.ru/
 ![screen](https://github.com/VadimCpp/Labyrinth/blob/master/screen.jpg)
 
 
-### Программировать ###
+## Getting Started ###
+
+Развернуть проект и запустить проект:
 
 ``` bash
 
