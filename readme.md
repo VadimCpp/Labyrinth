@@ -8,6 +8,17 @@ http://labi.vadimcpp.ru/
 
 ### Getting started ###
 
+
+``` bash
+
+git clone https://github.com/VadimCpp/Labyrinth.git
+
+cd Labyrinth
+
+npm install
+
+```
+
 <pre>
 	npm install
 	npm run webpack
