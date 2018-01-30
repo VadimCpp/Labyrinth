@@ -54,7 +54,7 @@ export default class LevelCompleteView extends View {
         let titleElem = document.createElement('h1');
 
         titleElem.classList.add('level-complete-view-container__title');
-        titleElem.innerHTML = 'Level 1';
+        titleElem.innerHTML = 'Level 1 in 10';
 
         return titleElem;
     }
@@ -96,7 +96,7 @@ export default class LevelCompleteView extends View {
      * @public
      */
     render(nextLevel) {
-        this._titleElem.innerHTML = 'Level ' + nextLevel;
+        this._titleElem.innerHTML = 'Level ' + nextLevel + ' in 10';
 		this._imageElem.src = '../img/level/l' + nextLevel + '.jpg';
 		console.log(this._imageElem.src);
         super.render();
