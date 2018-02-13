@@ -97,7 +97,7 @@ export default class LevelCompleteView extends View {
      */
     render(nextLevel) {
         this._titleElem.innerHTML = 'Level ' + nextLevel + ' in 10';
-		this._imageElem.src = '../img/level/l' + nextLevel + '.jpg';
+		this._imageElem.src = window.location.origin + window.location.pathname + '/img/level/l' + nextLevel + '.jpg';
 		console.log(this._imageElem.src);
         super.render();
     }
