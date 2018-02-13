@@ -1,7 +1,7 @@
 ## Лабиринт ##
 
 Играть тут:
-http://labi.vadimcpp.ru/
+https://vadimcpp.github.io/Labyrinth/
 
 ![screen](https://github.com/VadimCpp/Labyrinth/blob/master/screen.jpg)
 
