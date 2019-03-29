@@ -170,7 +170,7 @@ export default class LabyrinthView extends View {
 		navigationElem.appendChild(this._leftButtonElem);
 		navigationElem.appendChild(this._rightButtonElem);
 		
-       	return navigationElem;
+    return navigationElem;
     }
 	
 	/**
