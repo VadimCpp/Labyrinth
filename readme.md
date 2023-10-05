@@ -1,28 +1,17 @@
-## Лабиринт ##
+## Labyrinth ##
 
-Играть тут:
-https://vadimcpp.github.io/Labyrinth/
-
-Читать пост: http://webdev2018.blogspot.ru/2018/02/es6.html
+> Play here: https://vadimcpp.github.io/Labyrinth/
 
 ![screen](https://github.com/VadimCpp/Labyrinth/blob/master/screen.jpg)
 
-
 ## Getting Started ###
 
-Выполните команды, чтобы развернуть проект:
+Run commands:
 
 ``` bash
-
 git clone https://github.com/VadimCpp/Labyrinth.git
-
 cd Labyrinth
-
 npm install
-
 npm run webpack
-
 npm start
-
 ```
-
